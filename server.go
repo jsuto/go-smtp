@@ -57,6 +57,9 @@ type Server struct {
 	// Should be used only if backend supports it.
 	EnableDSN bool
 
+        // Advertise XFORWARD capability.
+        EnableXFORWARD bool
+
 	// The server backend.
 	Backend Backend
 

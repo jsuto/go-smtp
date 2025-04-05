@@ -290,6 +290,9 @@ func (c *Conn) handleGreet(enhanced bool, arg string) {
     if c.server.EnableDSN {
         caps = append(caps, "DSN")
     }
+    if c.server.EnableXFORWARD {
+        caps = append(caps, "XFORWARD NAME ADDR PROTO HELO")
+    }
     if c.server.MaxMessageBytes > 0 {
         caps = append(caps, fmt.Sprintf("SIZE %v", c.server.MaxMessageBytes))
     } else {
