@@ -1097,7 +1097,12 @@ func (c *Conn) handleXforward(arg string) {
         return
     }
     if c.bdatPipe != nil {
-         c.writeResponse(502, EnhancedCode{5, 5, 1}, "XFORWARD not allowed during message transfer")
+        c.writeResponse(502, EnhancedCode{5, 5, 1}, "XFORWARD not allowed during message transfer")
+        return
+    }
+
+    if !c.server.EnableXFORWARD {
+        c.writeResponse(504, EnhancedCode{5, 5, 4}, "XFORWARD is not implemented")
         return
     }
 
